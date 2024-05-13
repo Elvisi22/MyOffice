@@ -1,0 +1,36 @@
+<form [formGroup]="reservationForm" (ngSubmit)="createReservation()" class="reservation-form">
+  <h4>Add a Reservation</h4>
+  <img src="assets/photos/Group 1.png" class="small-image">
+  <p [ngClass]="{'text-danger': booked === 'Not Available', 'text-success': booked === 'Available'}">
+    {{ booked }}
+    <i [ngClass]="{'fa-regular fa-times-circle': booked === 'Not Available', 'fa-regular fa-check-circle': booked === 'Available'}"></i>
+  </p>
+  
+  <p *ngIf="avlbDate">Booked until: {{ avlbDate }}</p>
+
+
+  <mat-form-field>
+    <mat-label>Enter a date range</mat-label>
+    <mat-date-range-input [min]="today" [rangePicker]="picker" [formGroup]="reservationForm">
+      <input matStartDate formControlName="reservation_start_date" placeholder="Start date">
+      <input matEndDate formControlName="reservation_end_date" placeholder="End date">
+    </mat-date-range-input>
+  
+    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-date-range-picker #picker [dateClass]="isReservedDay"></mat-date-range-picker>
+  </mat-form-field>
+  
+  
+
+  
+  
+
+  
+  <input type="number" id="employee" name="employee-id" formControlName="employee" class="hidden">
+  <input type="number" id="place" name="place-id" formControlName="place" class="hidden">
+  <div style="display: flex; gap: 7px;">
+  <button mat-flat-button color="primary" type="submit" [disabled]="!reservationForm.valid" >Book</button>
+  
+  <button mat-flat-button color="warn" type="reset" (click)="cancel()">Cancel</button>
+</div>
+</form>

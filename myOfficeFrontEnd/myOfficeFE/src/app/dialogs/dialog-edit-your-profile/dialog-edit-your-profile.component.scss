@@ -1,0 +1,72 @@
+.container {
+  width: 20%; /* Adjust the width as needed */
+  margin: auto; /* Center the container horizontally */
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  // background: rgba(255, 255, 255, 1);
+  // box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  // backdrop-filter: blur(14.6px);
+  // -webkit-backdrop-filter: blur(14.6px);
+  // border-radius: 16px;
+  // box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  /* From https://css.glass */
+background: rgba(255, 255, 255, 0.26);
+border-radius: 16px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(14.5px);
+-webkit-backdrop-filter: blur(14.5px);
+border: 1px solid rgba(255, 255, 255, 0.74);
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+h2 {
+  text-align: center;
+}
+
+label {
+  font-weight: bold;
+}
+
+input[type="text"],
+input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+
+  /* From https://css.glass */
+background: rgba(255, 255, 255, 0.26);
+border-radius: 16px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(14.5px);
+-webkit-backdrop-filter: blur(14.5px);
+border: 1px solid rgba(255, 255, 255, 0.74);
+}
+
+button {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: #fff;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+.centered-icon {
+  position: absolute;
+  top: 20px; /* Adjust as needed */
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 3rem; /* Larger size */
+  z-index: 1; /* Ensure the icon is above other content */
+}

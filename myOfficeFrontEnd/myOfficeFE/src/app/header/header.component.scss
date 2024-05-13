@@ -1,0 +1,140 @@
+// header {
+//   color: #000000;
+//   display: flex;
+//   justify-content: space-between;
+//   align-items: center;
+//   padding: 10px 20px;
+ 
+  
+//   position: relative; /* Add relative positioning to the header */
+// }
+
+// .logo-container h1 {
+//   margin: 0;
+// }
+
+// .links-container {
+//   display: flex;
+//   align-items: center;
+// }
+
+// .links-container a {
+//   text-decoration: none;
+  
+//   display: flex;
+//   align-items: center;
+//   color: rgb(0, 0, 0);
+// }
+
+// .fa-solid.fa-user {
+//   margin-left: 5px; /* Adjust spacing between icon and text */
+// }
+
+// /* Positioning */
+// .logo-container {
+//   position: absolute;
+//   top: 30px;
+//   left: 20px;
+//   transform: translateY(-50%);
+// }
+
+// .links-container {
+//   position: absolute;
+//   top: 30px;
+//   right: 20px;
+//   transform: translateY(-50%);
+//   color: rgb(0, 0, 0);
+//   margin-right: 20px;
+// }
+
+.logo {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 10px;
+}
+
+.logo img {
+  max-width: 150px; /* Adjust the width as needed */
+}
+
+
+.fa-solid.fa-user {
+  margin-right: 9px; /* Adjust spacing between icon and text */
+}
+
+.fa-solid.fa-bars-staggered{
+  margin-right: 9px;
+}
+.fa-solid.fa-right-from-bracket{
+  margin-right: 9px;
+}
+.fa-solid.fa-house{
+  margin-right: 9px;
+}
+
+.fa-solid.fa-envelope{
+  margin-right: 9px;
+}
+
+// .links-container a {
+//   margin-right: 20px; /* Adjust the value as needed */
+// }
+
+/* navbar.component.css */
+.navbar {
+  // background: rgba(255, 255, 255, 0);
+  // border-radius: 16px;
+  color: #000000;
+  padding: 15px;
+  z-index: 1000;
+}
+
+.menu-btn {
+  background-color: transparent;
+  border: none;
+  color: #000000;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+/* navbar.component.css */
+.menu {
+  position: fixed;
+  top: 0;
+  left: -200px; /* Initial position */
+  height: 100%;
+  width: 200px;
+  background: rgba(0, 0, 0, 0.86);
+  border-radius: 16px;
+  padding-top: 60px;
+  transition: left 0.3s ease; /* Add transition */
+}
+
+.menu.open {
+  left: 0; /* Slide in from the left */
+}
+
+
+.menu a {
+  display: block;
+  color: #fcfcfc;
+  text-decoration: none;
+  padding: 15px;
+  border-bottom: 1px solid #444;
+}
+
+.menu a:hover {
+  background-color: #8bb1e4;
+}
+
+.menu .close-btn {
+  position: absolute;
+  top: 15px;
+  left: 13px;
+  background-color: transparent;
+  border: none;
+  color: #ffffff;
+  font-size: 16px;
+  cursor: pointer;
+}

@@ -1,0 +1,11 @@
+<div class="reservation-view" >
+    <div class="card" *ngIf="selectedReservation">
+      <div class="card-header">Reservation Info:</div>
+      <div class="card-body">
+        <p><strong>Table Number:</strong> {{ selectedReservation.placeNumber }}</p>
+        <p><strong>Start Day:</strong> {{ selectedReservation.reservationStartDate | dataFormat
+        }}</p>
+        <p><strong>End Day:</strong> {{ selectedReservation.reservationEndDate | dataFormat}}</p>
+      </div>
+    </div>
+  </div>

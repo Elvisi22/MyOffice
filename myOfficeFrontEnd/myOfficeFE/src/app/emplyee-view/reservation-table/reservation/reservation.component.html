@@ -1,0 +1,52 @@
+<div class="title-container">
+  <h1>Your reservations </h1>
+</div>
+<div class="table-container">
+    <table class="table">
+  <thead>
+    <tr>
+      
+      <th>Start Day</th>
+      <th>End Day</th>
+     
+      <th>Update</th>
+      <th>Delete</th>
+      <th>View</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let reservation of dataSource let i = index">
+      
+      <td>{{ reservation.reservation_start_date  | dataFormat }}</td>
+      <td>{{ reservation.reservation_end_date  | dataFormat}}</td>
+      
+     
+      <td><i class="fa-solid fa-pencil"  (click)="updateReservation(reservation.id)" ></i></td>
+      <td><i class="fa-solid fa-trash" (click)="deleteReservtion(reservation.id)"></i></td>
+      <td><i class="fa-regular fa-eye" (click)="toggleDiv(reservation.id)"></i></td>
+      
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+
+
+
+<div class="reservation-view" [hidden]="!showDiv">
+  <div class="card" *ngIf="selectedReservation">
+    <div class="card-header">Reservation Info:</div>
+    <div class="card-body">
+      <img src="assets/photos/Group 1.png" class="small-image">
+      <p><strong>Table Number:</strong> {{ selectedReservation.placeNumber }}</p>
+      <p><strong>Start Day:</strong> {{ selectedReservation.reservationStartDate | dataFormat
+      }}</p>
+      <p><strong>End Day:</strong> {{ selectedReservation.reservationEndDate | dataFormat}}</p>
+    </div>
+  </div>
+</div>
+

@@ -1,0 +1,142 @@
+.demo-inline-calendar-card {
+  width: 250px;
+  border-radius: 16px;
+  /* From https://css.glass */
+background: rgba(211, 189, 189, 0.26);
+border-radius: 16px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(14.5px);
+-webkit-backdrop-filter: blur(14.5px);
+border: 1px solid rgba(255, 255, 255, 0.74);
+
+}
+
+.calendar-container {
+  position: absolute;
+  top: 150px;
+  right: 20px;
+}
+
+.bottom-right-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  border-radius: 16px;
+
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+
+.container {
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin-top: 30px;
+}
+
+
+.small-image {
+  width: 30px;
+  height: auto;
+}
+
+/* Style for seat item */
+.seat-item {
+  cursor: pointer;
+ 
+  margin: 5px; /* Add space between seat items */
+  margin-right: 355px;
+}
+
+/* Optional: Adjust padding for seat items */
+.seat-item {
+  padding: 10px;
+}
+
+
+
+.section1 h2 {
+
+  color: white;
+
+}
+
+
+
+.custom-center {
+  display: grid;
+  justify-content: center;
+  margin-right: 100px; /* Add 20px margin to the right */
+}
+
+
+
+
+
+
+::ng-deep {
+
+  .even-date .mat-calendar-body-cell-content {
+    color: blue;
+    background-color: lightblue;
+  }
+
+
+  .odd-date .mat-calendar-body-cell-content {
+    // color: red; 
+    // background-color: lightcoral; 
+  }
+}
+
+
+
+
+::ng-deep {
+  .reserved-date .mat-calendar-body-cell-content {
+    background-color: rgb(109, 222, 109);
+    color: white;
+  }
+}
+
+
+//////
+.reservation-view {
+  position: fixed;
+  bottom: 40px;
+  right: 40px;
+  width: 15%;
+  border-radius: 16px;
+
+  background: rgba(255, 255, 255, 0.14);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(11.9px);
+  -webkit-backdrop-filter: blur(11.9px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.card {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 16px;
+
+  background: rgba(255, 255, 255, 0.14);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(11.9px);
+  -webkit-backdrop-filter: blur(11.9px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.card-header {
+  background-color: #f0f0f0;
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+  font-weight: bold;
+  border-radius: 16px;
+}
+
+.card-body {
+  padding: 10px;
+}

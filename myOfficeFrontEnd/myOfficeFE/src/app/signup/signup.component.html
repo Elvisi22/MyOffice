@@ -1,0 +1,49 @@
+<div class="container">
+  
+  
+    
+    <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="firstName">First Name:</label>
+        <input type="text" id="firstName" formControlName="firstName" required>
+        <div *ngIf="signupForm.get('firstName')?.hasError('required') && signupForm.get('firstName')?.touched">
+          <h5>First Name required</h5>
+      </div>
+      
+      
+        <div *ngIf="signupForm.controls['firstName'].hasError('minlength')&&signupForm.controls['firstName']">
+          <h5>Name not valid</h5>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="lastName">Last Name:</label>
+        <input type="text" id="lastName" formControlName="lastName" required>
+        <div *ngIf="signupForm.get('lastName')?.hasError('required') && signupForm.get('lastName')?.touched">
+          <h5>Last Name required</h5>
+      </div>
+      
+        <div *ngIf="signupForm.controls['lastName'].hasError('minlength')&&signupForm.controls['lastName']">
+          <h5>surname invalid</h5>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="text" id="email" formControlName="email" required>
+        <div *ngIf="signupForm.get('email')?.hasError('required') && signupForm.get('email')?.touched">
+          <h5>Email required</h5>
+      </div>
+      
+      <div *ngIf="signupForm.get('email')?.hasError('email') && signupForm.get('email')?.touched">
+        <h5>Email not valid</h5>
+    </div>
+    
+      </div>
+      <div class="form-group">
+        <label for="password">Password:</label>
+        <input type="password" id="password" formControlName="password" required>
+      </div>
+      
+      
+      <button type="submit" >Sign Up</button>
+    </form>
+  </div>

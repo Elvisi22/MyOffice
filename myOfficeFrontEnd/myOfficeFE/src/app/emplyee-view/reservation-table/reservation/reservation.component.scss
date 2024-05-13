@@ -1,0 +1,109 @@
+.table-container {
+    position: fixed;
+    top: 130px;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    
+  }
+  
+  .table {
+    width: 100%;
+    max-width: 800px; /* Set max-width to prevent table from stretching too wide */
+    border-collapse: collapse;
+    // background-color: #fff; /* Set the background color */
+    border-radius: 16px; /* Add border-radius for rounded corners */
+    overflow: hidden; /* Ensure content within the container doesn't overflow */
+    background: rgba(255, 255, 255, 0);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  }
+  
+  .table th, .table td {
+    padding: 8px;
+    border-bottom: 1px solid #fff9f9;
+    text-align: left;
+    
+  }
+  
+  // .table th {
+  //   background-color: #b1aeae;
+  // }
+
+  .reservation-view {
+    position: fixed;
+    top: 100px;
+    right: 50px;
+    width: 15%;
+    border-radius: 16px;
+/* From https://css.glass */
+background: rgba(255, 255, 255, 0.26);
+border-radius: 16px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(14.5px);
+-webkit-backdrop-filter: blur(14.5px);
+border: 1px solid rgba(255, 255, 255, 0.74);
+
+
+  }
+  
+  .card {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 16px;
+/* From https://css.glass */
+background: rgba(255, 255, 255, 0.14);
+border-radius: 16px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(11.9px);
+-webkit-backdrop-filter: blur(11.9px);
+border: 1px solid rgba(255, 255, 255, 0.3);
+
+
+  }
+  
+  .card-header {
+    background-color: #f0f0f0;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+    font-weight: bold;
+    border-radius: 16px;
+  }
+  
+  .card-body {
+    padding: 10px;
+  }
+
+  .title-container {
+    display: flex;
+    justify-content: center;
+    // align-items: center;
+    
+  }
+  
+  h1 {
+    margin-top: 20px;
+    margin-right: 50px;
+  }
+
+
+
+  .small-image {
+    display: block;
+    margin: auto;
+    margin-bottom: 20px;
+    width: 100px;
+  }
+
+
+
+
+
+
+  
+  
+ 
+  
+  

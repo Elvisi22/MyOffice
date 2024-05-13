@@ -1,0 +1,30 @@
+<header>
+    <!-- <nav>
+        <div class="logo-container">
+            <img src="/assets/photos/teamsystem.png" class="logo" [routerLink]="['./reserve']">
+        </div>
+         <div class="links-container"> 
+            <a *ngIf="isLoggedIn()" (click)="openProfile()"><i class="fa-solid fa-user"></i>{{currentUser.firstName}}</a>
+            <a  [routerLink]="['./reservation-list']"><i class="fa-solid fa-bars-staggered"></i>Reservations</a>
+            <a (click)="logout()"><i class="fa-solid fa-right-from-bracket"></i>Logout</a>
+        </div> 
+    </nav> -->
+
+
+    <!-- navbar.component.html -->
+    <div class="navbar">
+        <div class="logo"> <!-- Added logo container -->
+            <img src="/assets/photos/teamsystem.png" alt="Logo">
+          </div>
+        <button class="menu-btn" (click)="toggleMenu()" [ngClass]="{'hidden': isMenuOpen}"><i class="fa-solid fa-bars"> MyOffice</i></button>
+        <div class="menu" [ngClass]="{'open': isMenuOpen}">
+          <button class="close-btn" *ngIf="isMenuOpen" (click)="toggleMenu()"><i class="fa-solid fa-circle-xmark"> MyOffice </i> </button>
+          <a [routerLink]="['./reserve']"><i class="fa-solid fa-house"></i>Home</a>
+          <a  [routerLink]="['./reservation-list']"><i class="fa-solid fa-bars-staggered"></i>Reservations <span class="badge text-bg-secondary">{{reservCountNO}}</span></a>
+          <a *ngIf="isLoggedIn()" [routerLink]="['./edit-profile']"><i class="fa-solid fa-user"></i>{{currentUser.firstName }}{{" " +currentUser.lastName}}</a>
+          <a (click)="logout()"><i class="fa-solid fa-right-from-bracket"></i>Logout</a>
+          <a href="https://www.teamsystem.com/contatti/"><i class="fa-solid fa-envelope"></i>Contact</a>
+        </div>
+      </div>
+  
+</header>

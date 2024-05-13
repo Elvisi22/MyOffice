@@ -1,0 +1,15 @@
+/* You can add global styles to this file, and also import other style files */
+body {
+    
+    background-size: auto; /* Adjust as needed */
+    background-position: center; /* Adjust as needed */
+    background-image: url(/assets/photos/bg4.jpg);
+    background-size: cover; /* This will resize the background image to cover the entire container */
+    background-repeat: no-repeat;
+   
+  }
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+

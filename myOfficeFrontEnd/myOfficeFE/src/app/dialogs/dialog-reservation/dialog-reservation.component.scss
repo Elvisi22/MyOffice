@@ -1,0 +1,73 @@
+.reservation-form {
+  max-width: 600px;
+  margin: auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.reservation-form h4 {
+  margin-bottom: 20px;
+  text-align: center;
+  color: #333;
+}
+
+.small-image {
+  display: block;
+  margin: auto;
+  margin-bottom: 20px;
+  width: 100px;
+}
+
+.mat-form-field {
+  width: 180%;
+}
+
+input.mat-input-element {
+  font-size: 16px;
+}
+
+.mat-datepicker-toggle {
+  margin-top: 10px;
+}
+
+button[type="submit"], button[type="button"] {
+  width: 50%;
+}
+
+button[type="reset"], button[type="reset"] {
+  width: 50%;
+}
+
+.hidden {
+  display: none;
+}
+
+button[type="submit"] {
+  margin-right: 10px;
+}
+
+button[type="submit"]:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+
+::ng-deep {
+  .reserved-date .mat-calendar-body-cell-content {
+    background-color: rgb(213, 15, 15);
+    color: white;
+  }
+}
+
+
+::ng-deep .weekend .mat-calendar-body-cell-content {
+  color: #bbb; 
+}
+
+::ng-deep .weekend {
+  pointer-events: none; 
+  cursor: not-allowed; 
+}
+
