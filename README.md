@@ -8,7 +8,8 @@ This application serves for booking your seat on office directly from your brows
 
 
 When you touch your desired seat you will have a pop up like this 
-![image](https://github.com/Elvisi22/myOffice/assets/104167197/fbedf02a-8023-4dc4-8a13-7754520988cc)
+![image](https://github.com/Elvisi22/myOffice/assets/104167197/3ae205c6-49f1-4d62-8563-e268ffc16f2d)
+
 
 After you have created your reservation on the lest side you have your menu , on there you can look up your reservations .
 
