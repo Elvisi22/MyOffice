@@ -10,7 +10,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @AllArgsConstructor
@@ -28,28 +30,39 @@ public class ReservationController {
     }
 
 
-    @PostMapping("/create-reservation")
-    public ResponseEntity<ReservationDTO> createReservation(@RequestBody ReservationDTO reservationDTO) {
-        try {
-            ReservationDTO createdReservation = reservationService.createReservation(reservationDTO);
-            return new ResponseEntity<>(createdReservation, HttpStatus.CREATED);
-        } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+//    @PostMapping("/create-reservation")
+//    public ResponseEntity<ReservationDTO> createReservation(@RequestBody ReservationDTO reservationDTO) {
+//        try {
+//            ReservationDTO createdReservation = reservationService.createReservation(reservationDTO);
+//            return new ResponseEntity<>(createdReservation, HttpStatus.CREATED);
+//        } catch (Exception e) {
+//            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+//        }
+//    }
+@PostMapping("/create-reservation")
+public ResponseEntity<Object> createReservation(@RequestBody ReservationDTO reservationDTO) {
+    try {
+        ReservationDTO createdReservation = reservationService.createReservation(reservationDTO);
+        return new ResponseEntity<>(createdReservation, HttpStatus.CREATED);
+    } catch (Exception e) {
+        Map<String, String> errorResponse = new HashMap<>();
+        errorResponse.put("message", e.getMessage());
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorResponse);
     }
-
+}
 
     @PutMapping("/update-reservation/{id}")
-    public ResponseEntity<ReservationDTO> updateReservation(@PathVariable("id") Integer id,
-                                                            @RequestBody EditReservationDTO reservationDTO) {
+    public ResponseEntity<Object> updateReservation(@PathVariable("id") Integer id,
+                                                    @RequestBody EditReservationDTO reservationDTO) {
         try {
             ReservationDTO updatedReservation = reservationService.updateReservation(id, reservationDTO);
             return ResponseEntity.ok(updatedReservation);
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+            Map<String, String> errorResponse = new HashMap<>();
+            errorResponse.put("message", e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorResponse);
         }
     }
-
     @GetMapping("/get-reservation-by-id/{id}")
     public EditReservationDTO getReservationById(@PathVariable("id") Integer id){
         return reservationService.getReservationById(id);
@@ -100,6 +113,17 @@ public class ReservationController {
     @GetMapping("/countReservationsForUser")
     public Integer countReservationsByEmployeeId(@RequestParam("id") Integer id){
         return reservationService.countReservationsByEmployeeId(id);
+    }
+
+
+    @GetMapping("/today/{userId}")
+    public ResponseEntity<EditReservationDTO> getReservationsForToday(@PathVariable Integer userId) {
+        EditReservationDTO todayReservation = reservationService.getReservationsForToday(userId);
+        if (todayReservation != null) {
+            return ResponseEntity.ok(todayReservation);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 
 

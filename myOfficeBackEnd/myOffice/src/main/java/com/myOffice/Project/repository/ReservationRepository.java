@@ -1,5 +1,6 @@
 package com.myOffice.Project.repository;
 
+import com.myOffice.Project.entity.Employee;
 import com.myOffice.Project.entity.Place;
 import com.myOffice.Project.entity.Reservation;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -32,4 +33,10 @@ public interface ReservationRepository extends JpaRepository<Reservation , Integ
 
     @Query("SELECT COUNT(r) FROM Reservation r WHERE r.employee.id = :employeeId")
     Integer countReservationsByEmployeeId(int employeeId);
+
+    @Query("SELECT r FROM Reservation r WHERE r.employee = :employee AND " +
+            "(r.reservation_start_date < :endDate AND r.reservation_end_date > :startDate)")
+    List<Reservation> findByEmployeeAndDatesOverlap(@Param("employee") Employee employee,
+                                                    @Param("startDate") LocalDate startDate,
+                                                    @Param("endDate") LocalDate endDate);
 }

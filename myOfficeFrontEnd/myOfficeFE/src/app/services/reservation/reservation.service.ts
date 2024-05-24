@@ -1,8 +1,9 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, catchError, throwError } from 'rxjs';
 import { EditReservation } from 'src/app/model/EditReservation';
 import { Reservation } from 'src/app/model/Reservation';
+import { ReservationInfo } from 'src/app/model/ReservationInfo';
 import { SaveReservationDTO } from 'src/app/model/SaveReservation';
 
 @Injectable({
@@ -39,6 +40,13 @@ export class ReservationService {
 
   }
 
+  todayReservation(userId : number): Observable <ReservationInfo>{
+    const url = `${this.url}/today/${userId}`;
+    return this.http.get<ReservationInfo>(url);
+  }
+
+
+
 
   checkReservation(inputedDate: Date, userId: number): Observable<Reservation>{
     const dateString = inputedDate.toISOString().slice(0, 10);
@@ -63,14 +71,28 @@ export class ReservationService {
     return this.http.get<any>(url)
   }
 
-  private handleError(error: any) {
-    console.error('An error occurred:', error);
-    return throwError('Something went wrong; please try again later.');
+
+
+  // private handleError(error: any) {
+  //   console.error('An error occurred:', error);
+  //   return throwError('Something went wrong; please try again later.');
+  // }
+
+  private handleError(error: HttpErrorResponse): Observable<never> {
+    let errorMessage = 'An unknown error occurred!';
+    if (error.error instanceof ErrorEvent) {
+      errorMessage = `Error: ${error.error.message}`;
+    } else if (error.error && error.error.message) {
+      errorMessage = error.error.message;
+    } else {
+      errorMessage = `Error ${error.status}: ${error.statusText}`;
+    }
+    return throwError(() => new Error(errorMessage));
   }
 
 
-  updateReservation(id: number, editReservation: EditReservation): Observable<void> {
-    return this.http.put<void>(`${this.url}/update-reservation/${id}`, editReservation).pipe(
+  updateReservation(id: number, editReservation: EditReservation): Observable<any> {
+    return this.http.put(`${this.url}/update-reservation/${id}`, editReservation).pipe(
       catchError(this.handleError)
     );
   }

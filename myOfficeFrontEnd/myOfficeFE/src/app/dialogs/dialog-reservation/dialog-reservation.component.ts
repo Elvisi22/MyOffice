@@ -13,6 +13,7 @@ import { Reservation } from 'src/app/model/Reservation';
 import { SaveReservationDTO } from 'src/app/model/SaveReservation';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { ReservationService } from 'src/app/services/reservation/reservation.service';
+import { ErrorDialogComponent } from '../error-dialog/error-dialog/error-dialog.component';
 
 @Component({
   selector: 'app-dialog-reservation',
@@ -67,30 +68,31 @@ export class DialogReservationComponent implements OnInit {
 
   createReservation() {
     if (this.reservationForm.valid) {
-      let employee : Employee = new Employee(this.reservationForm.get('employee')?.value)
-      let place : Place = new Place(this.reservationForm.get('place')?.value)
-      let reservation : SaveReservationDTO = new SaveReservationDTO(this.reservationForm.get('reservation_start_date')?.value , 
-      this.reservationForm.get('reservation_end_date')?.value , employee , place)
-      console.log(reservation)
-      this.reservationService.createReservation(reservation).subscribe( ()=> {
-        this.openSnackBar();
-        console.log('Reservation updated successfully');
-        this.dialog.closeAll();
-
-       setTimeout(function() {
-      window.location.reload();
-        }, 1000); // 1500 milliseconds = 1.5 seconds
-
-        
-       
-      },
-      error => {
-        
-        console.error('Error updating reservation', error);
-      }
-    );
-      
-     
+      let employee: Employee = new Employee(this.reservationForm.get('employee')?.value);
+      let place: Place = new Place(this.reservationForm.get('place')?.value);
+      let reservation: SaveReservationDTO = new SaveReservationDTO(
+        this.reservationForm.get('reservation_start_date')?.value,
+        this.reservationForm.get('reservation_end_date')?.value,
+        employee,
+        place
+      );
+  
+      console.log(reservation);
+  
+      this.reservationService.createReservation(reservation).subscribe({
+        next: () => {
+          this.openSnackBar();
+          console.log('Reservation created successfully');
+          this.dialog.closeAll();
+          setTimeout(() => {
+            window.location.reload();
+          }, 1000); // 1000 milliseconds = 1 second
+        },
+        error: (error: Error) => {
+          console.error('Error creating reservation', error);
+          this.openErrorDialog(error.message);
+        }
+      });
     } else {
       console.log('Form is invalid');
     }
@@ -209,7 +211,11 @@ getAllReservations() {
   
 
   
-
+openErrorDialog(errorMessage: string) {
+  this.dialog.open(ErrorDialogComponent, {
+    data: { message: errorMessage }
+  });
+}
   
 
 

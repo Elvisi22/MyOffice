@@ -8,6 +8,7 @@ import { EditReservation } from 'src/app/model/EditReservation';
 import { Reservation } from 'src/app/model/Reservation';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { ReservationService } from 'src/app/services/reservation/reservation.service';
+import { ErrorDialogComponent } from '../error-dialog/error-dialog/error-dialog.component';
 
 @Component({
   selector: 'app-dialog-edit-reservation',
@@ -50,20 +51,21 @@ constructor(private formBuilder: FormBuilder , private reservationService : Rese
   
   update(){
     if (this.reservationForm.valid) {
-      this.reservationService.updateReservation(this.data.id, this.reservationForm.value).subscribe(
-        () => {
-          
-          console.log('Reservation updated successfully');
-          this.dialog.closeAll();
-          window.location.reload();
+      this.reservationService.updateReservation(this.data.id, this.reservationForm.value).subscribe({
+        next: (response) => {
+          console.log('Reservation updated successfully', response);
+          // this.dialog.closeAll();
           this.openSnackBar();
-        },
-        error => {
+            setTimeout(() => {
+              window.location.reload();
+            }, 1200);
           
-          console.error('Error updating reservation', error);
+        },
+        error: (error: Error) => {
+          this.openErrorDialog(error.message);
         }
-      );
-    } 
+      });
+    }
   }
 
  
@@ -78,6 +80,14 @@ constructor(private formBuilder: FormBuilder , private reservationService : Rese
 
   cancel(){
     this.dialog.closeAll();
+  }
+
+
+  
+  openErrorDialog(errorMessage: string) {
+    this.dialog.open(ErrorDialogComponent, {
+      data: { message: errorMessage }
+    });
   }
   
 

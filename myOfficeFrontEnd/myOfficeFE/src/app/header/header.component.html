@@ -16,7 +16,7 @@
         <div class="logo"> <!-- Added logo container -->
             <img src="/assets/photos/teamsystem.png" alt="Logo">
           </div>
-        <button class="menu-btn" (click)="toggleMenu()" [ngClass]="{'hidden': isMenuOpen}"><i class="fa-solid fa-bars"> MyOffice</i></button>
+        <button class="menu-btn" *ngIf="isLoggedIn()" (click)="toggleMenu()" [ngClass]="{'hidden': isMenuOpen}"><i class="fa-solid fa-bars"> MyOffice</i></button>
         <div class="menu" [ngClass]="{'open': isMenuOpen}">
           <button class="close-btn" *ngIf="isMenuOpen" (click)="toggleMenu()"><i class="fa-solid fa-circle-xmark"> MyOffice </i> </button>
           <a [routerLink]="['./reserve']"><i class="fa-solid fa-house"></i>Home</a>

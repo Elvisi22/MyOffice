@@ -42,6 +42,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 import { ReservationViewComponent } from './emplyee-view/reservation-view/reservation-view.component';
 import { ChunkPipe } from './pipes/chunk/chunk.pipe';
+import { ErrorDialogComponent } from './dialogs/error-dialog/error-dialog/error-dialog.component';
 
 
 
@@ -73,6 +74,7 @@ import { ChunkPipe } from './pipes/chunk/chunk.pipe';
     ReservationComponent,
     ReservationViewComponent,
     ChunkPipe,
+    ErrorDialogComponent,
    
     
   ],
@@ -110,6 +112,7 @@ import { ChunkPipe } from './pipes/chunk/chunk.pipe';
     
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [ErrorDialogComponent]
 })
 export class AppModule { }

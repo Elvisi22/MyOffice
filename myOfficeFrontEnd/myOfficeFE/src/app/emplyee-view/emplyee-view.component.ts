@@ -12,7 +12,8 @@ import { DialogEditReservationComponent } from '../dialogs/dialog-edit-reservati
 import { DialogDeletionComponent } from '../dialogs/dialog-deletion/dialog-deletion.component';
 import { MatCalendarCellClassFunction } from '@angular/material/datepicker';
 import { Reservation } from '../model/Reservation';
-import { tap } from 'rxjs';
+import { Observable, catchError, map, of, tap } from 'rxjs';
+import { ReservationInfo } from '../model/ReservationInfo';
 
 
 @Component({
@@ -40,15 +41,28 @@ export class EmplyeeViewComponent implements OnInit{
   ///
   selectedReservation : any;
 
+  booked!: boolean;
+  bookedStatus!: string;
 
+  reservationInfo: ReservationInfo | undefined;
+
+
+  bookeds!: string;
   
+  reservationCheck! : boolean;
   
-  
+  today: Date = new Date();
+ 
 
 
 ngOnInit(): void {
   this.getCurrentUser();
   this.getAllPlaces();
+  this.getTodayReservation(this.currentUser.id);
+  this.places.forEach(seat => {
+    this.bookedOrNo(seat.id);
+  });
+  
   
 }
 
@@ -78,6 +92,14 @@ ngOnInit(): void {
     });
   }
 
+  chunkArray(arr: any[], size: number) {
+    const result = [];
+    for (let i = 0; i < arr.length; i += size) {
+      result.push(arr.slice(i, i + size));
+    }
+    return result;
+  }
+
 
   
 
@@ -89,12 +111,19 @@ ngOnInit(): void {
   }
 
 
-  getAllPlaces(){
+  getAllPlaces(): void {
     this.seatService.getAllPlaces().subscribe(
       seats => {
         this.places = seats;
+        // Call bookedOrNo for each place after they are loaded
+        this.places.forEach(seat => {
+          this.bookedOrNo(seat.id);
+        });
+      },
+      error => {
+        console.error('Error loading places', error);
       }
-    )
+    );
   }
 
 
@@ -200,7 +229,7 @@ ngOnInit(): void {
     
   }
 
-  // Define method to handle calendar click event
+  
 handleCalendarClick(date: number | any) {
   this.reservationService.checkReservation(date , this.currentUser.id)
     .pipe(
@@ -227,6 +256,69 @@ handleCalendarClick(date: number | any) {
 
 
 
+checkBookingStatus(placeId: number): Promise<boolean> {
+    return this.reservationService.bookedOrNo(placeId).toPromise()
+      .then((booked: boolean) => {
+        this.booked = booked;
+        this.bookedStatus = booked ? "Available" : "Not Available";
+        return booked;
+      })
+      .catch((error) => {
+        console.error(error);
+        this.bookedStatus = "Error occurred";
+        return false; 
+      });
+  }
+
+
+
+  getTodayReservation(userId: number): void {
+    this.reservationService.todayReservation(userId).subscribe(
+      (reservationInfoFromApi: ReservationInfo) => {
+        // Assign the values received from the API 
+        this.reservationInfo = {
+          reservationStartDate: reservationInfoFromApi.reservationStartDate,
+          reservationEndDate: reservationInfoFromApi.reservationEndDate,
+          employeeId: reservationInfoFromApi.employeeId,
+          placeId: reservationInfoFromApi.placeId,
+          placeNumber: reservationInfoFromApi.placeNumber
+        };
+        this.reservationCheck = true;
+      },
+      (error: any) => {
+        
+        console.error('Error:', error);
+      }
+    );
+  }
+
+  bookedOrNo(placeId: number): void {
+    this.reservationService.bookedOrNo(placeId).subscribe(
+      (booked: boolean) => {
+        const seatItem = document.getElementById(`seat-${placeId}`);
+        if (seatItem) {
+          if (!booked) {
+            seatItem.classList.add('disabled');
+            seatItem.style.pointerEvents = 'none'; 
+          } else {
+            seatItem.classList.remove('disabled');
+            seatItem.style.pointerEvents = 'auto'; 
+          }
+        }
+      },
+      (error) => {
+        console.error('Error checking booking status', error);
+      }
+    );
+  }
+  
+  
+
+ 
+}
+
+
+
 
  
 
@@ -236,4 +328,4 @@ handleCalendarClick(date: number | any) {
   
   
 
-}
+

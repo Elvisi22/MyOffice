@@ -1,118 +1,86 @@
-.demo-inline-calendar-card {
-  width: 250px;
-  border-radius: 16px;
-  /* From https://css.glass */
-background: rgba(211, 189, 189, 0.26);
-border-radius: 16px;
-box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-backdrop-filter: blur(14.5px);
--webkit-backdrop-filter: blur(14.5px);
-border: 1px solid rgba(255, 255, 255, 0.74);
-
-}
-
-.calendar-container {
-  position: absolute;
-  top: 150px;
-  right: 20px;
-}
-
-.bottom-right-button {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  border-radius: 16px;
-
-  border: 1px solid rgba(255, 255, 255, 0.3);
-}
-
 
 .container {
-
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
+  justify-content: space-between;
   margin-top: 30px;
+  padding: 0 20px;
 }
 
 
-.small-image {
-  width: 30px;
-  height: auto;
+.section1 {
+  width: 80%;
 }
 
-/* Style for seat item */
+.section1 h1 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #fff;
+}
+
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr) 2fr repeat(2, 1fr); 
+  gap: 10px; 
+  justify-items: center;
+  align-items: center;
+}
+
+
+.spacer {
+  grid-column: span 1;
+  height: 10%; 
+}
+
+
 .seat-item {
   cursor: pointer;
- 
-  margin: 5px; /* Add space between seat items */
-  margin-right: 355px;
-}
-
-/* Optional: Adjust padding for seat items */
-.seat-item {
+  transition: transform 0.2s;
   padding: 10px;
-}
-
-
-
-.section1 h2 {
-
-  color: white;
-
-}
-
-
-
-.custom-center {
-  display: grid;
-  justify-content: center;
-  margin-right: 100px; /* Add 20px margin to the right */
-}
-
-
-
-
-
-
-::ng-deep {
-
-  .even-date .mat-calendar-body-cell-content {
-    color: blue;
-    background-color: lightblue;
-  }
-
-
-  .odd-date .mat-calendar-body-cell-content {
-    // color: red; 
-    // background-color: lightcoral; 
-  }
-}
-
-
-
-
-::ng-deep {
-  .reserved-date .mat-calendar-body-cell-content {
-    background-color: rgb(109, 222, 109);
-    color: white;
-  }
-}
-
-
-//////
-.reservation-view {
-  position: fixed;
-  bottom: 40px;
-  right: 40px;
-  width: 15%;
-  border-radius: 16px;
-
+  border-radius: 10px;
   background: rgba(255, 255, 255, 0.14);
-  border-radius: 16px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(11.9px);
   -webkit-backdrop-filter: blur(11.9px);
   border: 1px solid rgba(255, 255, 255, 0.3);
+  text-align: center; 
+}
+
+.seat-item:hover {
+  transform: scale(1.1);
+}
+
+.seat-item p {
+  margin: 0;
+  color: white;
+}
+
+.small-image {
+  width: 35px;
+  height: auto;
+}
+
+
+.section2 {
+  position: fixed;
+  top: 120px;
+  right: 20px;
+  width: 250px;
+}
+
+.demo-inline-calendar-card {
+  width: 100%;
+  border-radius: 16px;
+  background: rgba(211, 189, 189, 0.26);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(14.5px);
+  -webkit-backdrop-filter: blur(14.5px);
+  border: 1px solid rgba(255, 255, 255, 0.74);
+}
+
+
+.reservation-view {
+  margin-top: 20px;
 }
 
 .card {
@@ -120,9 +88,7 @@ border: 1px solid rgba(255, 255, 255, 0.74);
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   border-radius: 16px;
-
   background: rgba(255, 255, 255, 0.14);
-  border-radius: 16px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(11.9px);
   -webkit-backdrop-filter: blur(11.9px);
@@ -139,4 +105,60 @@ border: 1px solid rgba(255, 255, 255, 0.74);
 
 .card-body {
   padding: 10px;
+}
+
+
+.custom-center {
+  display: flex;
+  justify-content: center;
+}
+
+
+::ng-deep {
+  .even-date .mat-calendar-body-cell-content {
+    color: blue;
+    background-color: lightblue;
+  }
+
+  .odd-date .mat-calendar-body-cell-content {
+    color: red;
+    background-color: lightcoral;
+  }
+
+  .reserved-date .mat-calendar-body-cell-content {
+    background-color: rgb(109, 222, 109);
+    color: white;
+  }
+}
+
+
+.bottom-right-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.today-schedule.bottom-right {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+}
+
+.booked-seat {
+  cursor: not-allowed; 
+  opacity: 0.5; 
+}
+
+.disabled {
+  
+  pointer-events: none !important; 
+  cursor: not-allowed !important; 
+  opacity: 0.5; 
+}
+
+.date-container {
+  font-size: 1rem;
+  color: #fff; 
 }

@@ -1,165 +1,57 @@
 <div class="container">
-  
   <div class="section1">
-    <h1>Welcome {{currentUser.firstName}} !</h1>
-    <div class="container text-center">
-      
-      <div class="row">
-        <div class="col-1" *ngFor="let seat of places.slice(0, 10)">
-          <!-- Adjust the slice to display 10 seats --> 
-          <div class="p-3 seat-item" (click)="openDialog('270ms', '270ms', seat.id)">
-            <img src="assets/photos/Group 1.png" class="small-image">
-          </div>
-        </div>
+    <h1>{{currentUser.firstName}} Dashboard</h1>
+    <div class="date-container">
+      <p>{{ today | date: 'fullDate' }}</p>
+    </div>
+    <div class="spacer"></div>
+    <div class="grid-container">
+      <div class="seat-item" *ngFor="let seat of places" [id]="'seat-' + seat.id"
+           (click)="openDialog('270ms', '270ms', seat.id)">
+        <p>Seat No. {{ seat.id }}</p>
+        <img src="assets/photos/Group 1.png" class="small-image">
       </div>
-      
-      <!-- Add more rows as needed -->
-      <div class="row">
-        
-        <div class="col-1" *ngFor="let seat of places.slice(10, 20)">
-          <!-- Adjust the slice to display the next 10 seats -->
-          <div class="p-3 seat-item" (click)="openDialog('270ms', '270ms', seat.id)">
-            <img src="assets/photos/Group 1.png" class="small-image">
-          </div>
-        </div>
-      </div>
-      
-      <div class="row">
-        
-        <div class="col-1" *ngFor="let seat of places.slice(20, 30)">
-          <!-- Adjust the slice to display the next 10 seats -->
-          <div class="p-3 seat-item" (click)="openDialog('270ms', '270ms', seat.id)">
-            <img src="assets/photos/Group 1.png" class="small-image">
-          </div>
-        </div>
-      </div>
-
-      <div class="row">
-       
-        <div class="col-1" *ngFor="let seat of places.slice(30, 40)">
-          <!-- Adjust the slice to display the next 10 seats -->
-          <div class="p-3 seat-item" (click)="openDialog('270ms', '270ms', seat.id)">
-            <img src="assets/photos/Group 1.png" class="small-image">
-          </div>
-        </div>
-      </div>
-      
-      
-      <div class="row">
-        
-        <div class="col-1" *ngFor="let seat of places.slice(40, 50)">
-          <!-- Adjust the slice to display the next 10 seats -->
-          <div class="p-3 seat-item" (click)="openDialog('270ms', '270ms', seat.id)">
-            <img src="assets/photos/Group 1.png" class="small-image">
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-1" *ngFor="let seat of places.slice(50, 60)">
-          <!-- Adjust the slice to display the next 10 seats -->
-          <div class="p-3 seat-item" (click)="openDialog('270ms', '270ms', seat.id)">
-            <img src="assets/photos/Group 1.png" class="small-image">
-          </div>
-        </div>
-      </div>
-      
-      <div class="row">
-        
-        <div class="col-1" *ngFor="let seat of places.slice(60, 70)">
-          <!-- Adjust the slice to display the next 10 seats -->
-          <div class="p-3 seat-item" (click)="openDialog('270ms', '270ms', seat.id)">
-            <img src="assets/photos/Group 1.png" class="small-image">
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-1" *ngFor="let seat of places.slice(70, 80)">
-          <!-- Adjust the slice to display the next 10 seats -->
-          <div class="p-3 seat-item" (click)="openDialog('270ms', '270ms', seat.id)">
-            <img src="assets/photos/Group 1.png" class="small-image">
-          </div>
-        </div>
-      </div>
-      
-      <div class="row">
-        <div class="col-1" *ngFor="let seat of places.slice(80, 90)">
-          <!-- Adjust the slice to display the next 10 seats -->
-          <div class="p-3 seat-item" (click)="openDialog('270ms', '270ms', seat.id)">
-            <img src="assets/photos/Group 1.png" class="small-image">
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-1" *ngFor="let seat of places.slice(90, 100)">
-          <!-- Adjust the slice to display the next 10 seats -->
-          <div class="p-3 seat-item" (click)="openDialog('270ms', '270ms', seat.id)">
-            <img src="assets/photos/Group 1.png" class="small-image">
-          </div>
-        </div>
-      </div>
-      
-      <div class="row">
-        <div class="col-1" *ngFor="let seat of places.slice(100, 110)">
-          <!-- Adjust the slice to display the next 10 seats -->
-          <div class="p-3 seat-item" (click)="openDialog('270ms', '270ms', seat.id)">
-            <img src="assets/photos/Group 1.png" class="small-image">
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-1" *ngFor="let seat of places.slice(110, 120)">
-          <!-- Adjust the slice to display the next 10 seats -->
-          <div class="p-3 seat-item" (click)="openDialog('270ms', '270ms', seat.id)">
-            <img src="assets/photos/Group 1.png" class="small-image">
-          </div>
-        </div>
-      </div>
-      
-      <!-- Add more rows as needed -->
-      
     </div>
     
+    
+  </div>
 
-
-
-
-
-
-
-
-
-  <div class="section2" >
- 
-<div class="calendar-container" *ngIf="reservations">
-  <mat-card class="demo-inline-calendar-card"  >
-  <mat-calendar 
-    [dateClass]="isReservedDay"
-    [dateFilter]="weekendDisable"
-    [(selected)]="selected"
-    (click)="handleCalendarClick(selected)"
-  ></mat-calendar>
-</mat-card>
-</div>
-
-
-<div class="reservation-view" [hidden]="!showDiv">
-  <div class="card" *ngIf="selectedReservation">
-    <div class="card-header">Brif Info:</div>
-    <div class="card-body">
-      <!-- <p><strong>Table Number:</strong> {{ selectedReservation.placeNumber }}</p> -->
-      <p><strong>Start Day:</strong> {{ selectedReservation.reservation_start_date| dataFormat
-      }}</p>
-      <p><strong>End Day:</strong> {{ selectedReservation.reservation_end_date | dataFormat}}</p>
+  <div class="section2">
+    <div class="calendar-container" *ngIf="reservations">
+      <mat-card class="demo-inline-calendar-card">
+        <mat-calendar
+          [dateClass]="isReservedDay"
+          [dateFilter]="weekendDisable"
+          [(selected)]="selected"
+          (click)="handleCalendarClick(selected)">
+        </mat-calendar>
+      </mat-card>
     </div>
+
+    <div class="reservation-view" [hidden]="!showDiv">
+      <div class="card" *ngIf="selectedReservation">
+        <div class="card-header">Brief Info:</div>
+        <div class="card-body">
+          <p><strong>Start Day:</strong> {{ selectedReservation.reservation_start_date | date }}</p>
+          <p><strong>End Day:</strong> {{ selectedReservation.reservation_end_date | date }}</p>
+        </div>
+      </div>
+    </div>
+
+
+   
   </div>
-</div>
+  <div class="today-schedule bottom-right" [hidden]="!reservationCheck">
+    <div class="card">
+      <div class="card-header">Today's reservation</div>
+      <div class="card-body">
+        <h5>Until : {{reservationInfo?.reservationEndDate | date}}</h5>
 
-
-  </div>
-
-    <div class="section3">
+      <img src="assets/photos/Group 1.png" class="small-image">
       <hr>
-    
-    
+      Seat No. {{reservationInfo?.placeNumber}}
+      </div>
+    </div>
   </div>
+  
 </div>
